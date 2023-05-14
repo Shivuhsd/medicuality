@@ -1,0 +1,119 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block dash %}
+    
+<div class="d-flex justify-content-center">
+<div class="table-responsive py-5">
+<table class="text-center table-responsive" border=2px>
+  <tr>
+    <th><div class="py-5 px-4" style="background: blue"></div></th>
+    <th class="py-3"><img src="{% static 'images/logo.png' %}" alt="" style="width: 450px; height: 140px;"></th>
+    <th><div class="py-5 px-4" style="background: blue"></div></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th style="border: 1px solid"><p class="px-3">225, INDIRALAYA, METROPOLIS FAIR OAKS, DODDA-THIMMASANDARA TOAD, SARJAPUR, BANGALORE 562125</p></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th><p class="px-5 mt-2"><u>HANDHOLDING PARTNERS TO ACHIEVE NAAC, NABH & NABL <br> ACCREDITIONS</u></p></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="d-flex justify-content-between"><span>GST : {{m_info.gst}}</span><span>Mobile No : {{m_info.mobile}}</span></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="pt-3"><u>TAX INVOICE</u><br>CASH/CREDIT</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="d-flex justify-content-between"><span>SL.NO. {{pay_info.id}}</span><span>Date: {{pay_info.time_stamp.date}}</span></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th>
+      <table>
+        <tr>
+          <th class="pb-4">Mr/Mrs</th>
+          <th class="pt-5 ps-3 text-start"><span>{{p_info.patient_name}}<br>{{pay_info.billing_address_1}}, {{pay_info.billing_address_city}}, <br>{{pay_info.billing_address_state}}, {{pay_info.billing_address_pin}}<br> GST NO: {{p_info.patient_gst_no}}</span></th>
+        </tr>
+      </table>
+    </th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th>
+      <table class="table table-bordered mt-5">
+        <tr>
+          <th class="px-4">PAYMENT<br>DETAILS</th>
+          <th>ACTIVITY</th>
+          <th class="px-5">TOTAL<br>AMOUNT<br>TO BE PAID</th>
+          <th class="px-4">C GST 9%</th>
+          <th class="px-4">S GST 9%</th>
+          <th class="px-4">TOTAL</th>
+          <th class="px-4">STATUS</th>
+        </tr>
+
+        <tr>
+          <th>{{pay_info.payment_details}}</th>
+          <th>{{pay_info.activity}}</th>
+          <th>{{pay_info.total_amount}}</th>
+          <th>{{pay_info.c_gst}}</th>
+          <th>{{pay_info.s_gst}}</th>
+          <th>{{pay_info.amount}}</th>
+          <th>{{pay_info.status}}</th>
+        </tr>
+      </table>
+    </th>
+    <th></th>
+  </tr>
+
+
+  <tr>
+    <th></th>
+    <th class="text-end py-5 my-5">
+    </th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th></th>
+    <th class="text-end py-5 my-5">
+      <span class="text-center" style="font-size: 20px;">Savitha N </span> <br> Authorized Signatory <br> Founder, Director <br>Dr.Savitha Narasimhaiah
+    </th>
+    <th></th>
+  </tr>
+  
+
+  <tr>
+    <th></th>
+    <th class="text-end py-5 my-5">
+    </th>
+    <th></th>
+  </tr>
+  
+
+  <tr>
+    <th><div class="py-3 px-2" style="background: blue"></div></th>
+    <th><div class="py-1 px-2 d-flex justify-content-between" style="background: blue"><span class="text-white"><i class="bi bi-telephone-fill me-1"></i>986767657</span> <span class="text-white"><i class="bi bi-envelope-fill me-1"></i>savitha@medicuality.in</span> <span class="text-white"><i class="bi bi-globe me-1"></i>www.medicuality.in</span> </div></th>
+    <th><div class="py-3 px-2" style="background: blue"></div></th>
+  </tr>
+</table>
+</div>
+</div>
+
+{% endblock %}

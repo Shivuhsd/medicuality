@@ -1,0 +1,159 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+
+    <div class="h3 py-3">
+      Sales Register
+    </div>
+       <form action="" class="form-group row g-3 d-flex justify-content-start" method="POST">
+          {% csrf_token %}
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">From Date</label>
+                <input type="date" name="fdate" class="form-control" id="inputEmail4" required>
+              </div>
+    
+              <div class="col-md-4">
+                <label for="inputPassword4" class="form-label">To Date</label>
+                <input type="date" name="tdate" class="form-control" id="inputPassword4" required>
+              </div>
+
+              <div>
+                <button class="btn btn-primary">Submit</button>
+              </div>
+              
+        </form>
+
+      
+      <div>
+        <hr>
+        <div class="text-center">
+          <p>Medicuality <br>Healthcare Services <br> 225, Indiralaya, Metropolis Fair Oaks, <br>Dodda-Thimmasandra Road, Sarjapur, <br>Banglore -- 562125 </p>
+        </div>
+        <td><hr style="border-top: dotted 1px;" /></td>
+        <div class="text-center">
+          <p>From Date --- To Date</p>
+          <h6>{{start}}----{{end}}</h6>
+        </div>
+        <hr style="border-top: dotted 1px;" />
+       <div class="table-responsive pt-5 mb-5 d-flex justify-content-center">
+        
+          <table class="text-center">
+            <tr> 
+              <th class="pb-5 text-start">Bill No</th>
+              <th class="px-5 pb-5">Date</th>
+              <th class="px-5 pb-5">Bill Value</th>
+              <th class="px-5 pb-5">Amount </th>
+              <th class="px-5 pb-5">S GST</th>
+              <th class="px-5 pb-5">C GST</th>
+            </tr>
+            
+            <tr>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              <td><hr style="border-top: dotted 1px;" /></td>
+              
+            </tr>
+            
+            {% for lst in lst %}
+
+                {% for pats in cus_info %}
+                    {% if pats.id == lst %}
+                        <tr>
+                          <td class="text-start"><b>{{pats.patient_name}}<br>{{pats.city}}</b></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+                {% for records in records %}
+                  <tr>
+                    {% if records.patient_id.id ==  lst %}
+                      <td class="text-start">{{records.id}}</td>
+                      <td>{{records.time_stamp.date}}</td>
+                      <td>{{records.amount}}</td>
+                      <td>{{records.total_amount}}</td>
+                      <td>{{records.s_gst}}</td>
+                      <td>{{records.c_gst}}</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+           
+
+                <tr>
+                  <td></td>
+                  <td><hr style="border-top: dotted 3px;" /></td>
+                  <td><hr style="border-top: dotted 3px;" /></td>
+                  <td><hr style="border-top: dotted 3px;" /></td>
+                  <td><hr style="border-top: dotted 3px;" /></td>
+                  <td><hr style="border-top: dotted 3px;" /></td>
+                </tr>
+
+                {% for lst2 in total %}
+                    {% if lst in lst2 %}
+                      <tr>
+                        <td>Total</td>
+                          {% for lst1 in lst2 %}
+                            <td>{{lst1}}</td>
+                          {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+                <tr>
+                  <td class="py-4"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+            {% endfor %}
+
+            
+            
+
+            <tr>
+              <td><hr style="border-top: dotted 2px;" /></td>
+              <td><hr style="border-top: dotted 2px;" /></td>
+              <td><hr style="border-top: dotted 2px;" /></td>
+              <td><hr style="border-top: dotted 2px;" /></td>
+              <td><hr style="border-top: dotted 2px;" /></td>
+              <td><hr style="border-top: dotted 2px;" /></td>
+
+              
+            </tr>
+
+            <tr>
+              <td>Grand Total </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+
+            <tr>
+              <td></td>
+              <td></td>
+              {% for i in g_total %}
+                <td>{{i}}</td>
+              {% endfor %}
+            </tr>
+            
+              
+
+          </table>
+        </div>
+      </div>
+
+        
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+
+<div class="">
+    <div class="h3 py-3 mb-3">
+        Customer Details:
+    </div>
+
+    <ol class="list-group list-group-numbered">
+    {% for post in page_obj.object_list %}
+      {# note that the list of posts are in the page_obj.object_list not page_obj #}
+
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{{post.patient_name}}</div>
+                {{post.city}}
+              </div>
+              <span class="badge bg-primary rounded-pill"> <a href="{% url 'patient_view' post.id%}"><button class="btn btn-primary">Open</button></a></span>
+            </li>
+     {% endfor %}
+    </ol>
+</div>
+<hr>
+<div class="my-4 text-center">
+    <p>Page No </p>
+    {%if page_obj.has_previous %} {# whether the previous page exists #}
+         <a href="?page={{page_obj.previous_page_number}}" class="py-2 px-2 mx-2 border border-primary">{{page_obj.previous_page_number}}</a> {# link to the prev page #}
+    {% endif %}
+    <span class="py-2 px-2 mx-2" style="background-color: rgb(64, 64, 234); color:aliceblue">{{page_obj.number}}</span> {# the current page number #}
+    
+    {%if page_obj.has_next %} {# whether the next page exists #}
+        <a href="?page={{page_obj.next_page_number}}" class="py-2 px-2 mx-2 border border-primary">{{page_obj.next_page_number}}</a> {# link to the next page #}
+    {% endif %}
+</div>
+
+{% endblock %}

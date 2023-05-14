@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block dash %}
+    <div class="container text-center">
+        <div><img src="{% static 'images/logo.png' %}" alt="" style="width:350px;" class="img-fluid"></div>
+    </div>
+    
+    <table class="align-start mt-5">
+      <tr>
+        <td style="font-size: 15px;">Customer ID : {{p_info.id}}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="pb-4"><p style="font-size: 20px;">Mr/Mrs:</p></td>
+        <td class="pt-4"><b>{{p_info.patient_name}} <br>{{p_info.patient_adress_1}}, {{p_info.patient_address_2}} <br>{{p_info.city}}, {{p_info.state}} <br>{{p_info.pin}}</b></td>
+      </tr>
+    </table>
+
+    <h4 class="pt-5"><b>Bills : </b></h4>
+    <div class="my-4">
+        <ol class="list-group list-group-numbered">
+            {% for re in pay_info %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Bill ID : {{re.id}}</div>
+                {{re.payment_details}} <br>
+                {{re.time_stamp.date}}
+                </div>
+              <span class="badge"><a href="{% url 'view_bill' re.id %}"><button class="btn btn-dark mx-3">Show</button></a><a href="{% url 'editbill' re.id %}"><button class="btn btn-primary">Edit</button></a></span>
+            </li>
+            {% endfor %}
+          </ol>
+    </div>
+{% endblock %}

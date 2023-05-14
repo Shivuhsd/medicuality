@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+
+<div class="container my-4">
+    <div class="h3">Billing : </div>
+</div>
+    <div class="container my-4">
+      <div>
+        <p><b>Customer Name :</b> {{p_d.patient_name}}</p>
+        <p><b>Place : </b>{{p_d.city}}</p>
+      </div>
+      <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-floating my-4">
+                <textarea name="payment_details" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Payment Details</label>
+              </div>
+
+              <div class="form-floating my-4">
+                <textarea  name="activity" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Activity</label>
+              </div>
+
+              <div class="form-floating my-4">
+                <textarea  disabled class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{p_d.patient_adress_1}}, {{p_d.patient_address_2}}, {{p_d.city}}, {{p_d.state}}, {{p_d.pin}}</textarea>
+                <label for="floatingTextarea2">Communication Address</label>
+              </div>
+
+              <div class="col-md-4">
+                <label for="inputState" class="form-label">Billing Address</label>
+                <select id="inputState" required name="choice" class="form-select" onchange="jsFunction();">
+                  <option selected value="1">Same as Communication Address</option>
+                  <option value="2">New Address</option>
+                </select>
+              </div>
+
+              <div class="row g-3" id="adrs" style="display: none;">
+                <h4>New Address</h4>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Address 1</label>
+                  <input type="text" name="address-1" class="form-control" id="inputAddress" placeholder="Building name or No....." maxlength="100">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress2" class="form-label">Address 2</label>
+                  <input type="text" name="address-2" class="form-control" id="inputAddress2" placeholder="Locality or Street...."maxlength="100">
+                </div>
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">City</label>
+                  <input type="text" name="city" class="form-control" id="inputCity" maxlength="100">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">State</label>
+                  <select id="inputState" name="state" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>Andaman & Nicobar Islands</option>
+                    <option>Andhra Pradesh (Old)</option>
+                    <option>Arunachal Pradesh</option>
+                    <option>Assam</option>
+                    <option>Bihar</option>
+                    <option>Chandigarh</option>
+                    <option>Chhattisgarh</option>
+                    <option>Dadra & Nagar Haveli</option>
+                    <option>Daman & Diu</option>
+                    <option>	
+                      Delhi</option>
+                    <option>Goa</option>
+                    <option>Gujarat</option>
+                    <option>Haryana</option>
+                    <option>Himachal Pradesh</option>
+                    <option>Jammu & Kashmir</option>
+                    <option>Karnataka</option>
+                    <option>Kerala</option>
+                    <option>Lakshadweep</option>
+                    <option>Madhya Pradesh</option>
+                    <option>Maharashtra</option>
+                    <option>Manipur</option>
+                    <option>Meghalaya</option>
+                    <option>Mizoram</option>
+                    <option>Nagaland</option>
+                    <option>Odisha</option>
+                    <option>Puducherry</option>
+                    <option>	
+                      Punjab</option>
+                    <option>Rajasthan</option>
+                    <option>Sikkim</option>
+                    <option>Tamil Nadu</option>
+                    <option>	
+                      Tripura</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Uttarakhand</option>
+                    <option>West Bengal</option>
+                    <option>Telangana</option>
+                    <option>Andhra Pradesh</option>
+                    <option>Ladakh</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="inputZip" class="form-label">Pin</label>
+                  <input type="text" name="pin" class="form-control" id="inputZip" required maxlength="6">
+                </div>
+              
+              </div>
+
+              <div class="form-floating my-4">
+                <input name="amount" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" maxlength="100">>
+                <label for="floatingInput">Total Amount</label>
+              </div>
+
+              <div class="form-floating my-4">
+                <select name='status' class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="Paid">Paid</option>
+                  <option value="Un-Paid">Un-Paid</option>
+                  <option value="Other">Other</option>
+                </select>
+                <label for="floatingSelect">Payment Status</label>
+              </div>
+
+              <div class="my-4">
+                <button class='btn btn-primary' type="submit">Submit</button>
+              </div>
+        </form>
+    </div>
+
+    <script>
+      function jsFunction()
+      {
+        var sel = document.getElementById("inputState").value
+        if(sel==='1')
+        {
+          document.getElementById("adrs").style.display = "none";
+        }
+        if(sel === '2')
+        {
+          document.getElementById("adrs").style.display = "block";
+        }
+
+      }
+    </script>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+    <div class="container mx-5">
+        <form action="" method='POST' class="me-5">
+            {% csrf_token %}
+            <div class="me-5">
+                {{form.as_p}}
+            </div>
+            
+            <button class="btn btn-primary">
+                Update
+            </button>
+            <a href="{% url 'dashboard' %}">
+                <button class="btn btn-dark">
+                    Cancel
+                </button>
+            </a>
+            
+        </form>
+    </div>
+
+
+    <script>
+        var element = document.getElementById("id_email");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_username");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_last_name");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_first_name");
+        element.classList.add("form-control");
+     </script>
+{% endblock %}

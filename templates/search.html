@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+    <h2>Search/Find:</h2><br>
+    <div class="my-3"> 
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" class="form-control" name="q" placeholder="Enter Phone Number or Name or City or GST NO" required><br>
+            <button class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+
+    <div class="container">
+      {% if result %}
+        <ol class="list-group list-group-numbered">
+          
+            {% for re in result %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{{re.patient_name}}</div>
+                {{re.patient_phone}}
+                </div>
+              <span class=""><a href="{% url 'patient_view' re.id %}"><button class="btn btn-dark mx-3">Show</button></a><a href="{% url 'billing' re.id %}" class=""><button class="btn btn-dark">Add</button></a></span>
+            </li>
+            {% endfor %}
+            
+          </ol>
+        {% else %}
+          <!--Messages-->
+          <div>
+            <div class="text-center mt-5">
+              <h3>Enter Key To Search <br>
+              or <br>
+            There is no Matching Value</h3>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+    </div>
+   
+{% endblock %}

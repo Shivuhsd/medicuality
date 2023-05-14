@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{% block dash %}
+
+<div class="container my-4">
+    <div class="h3">Billing : </div>
+</div>
+    <div class="container my-4">
+      <div>
+        <p><b>Customer Name :</b> {{h.patient_name}}</p>
+        <p><b>Place : </b>{{h.city}}</p>
+      </div>
+
+      <h3>
+        <hr>
+        Edit Bill : 
+      </h3>
+      
+      
+        <form action="" method="POST" class="pt-3 pb-5">
+            {% csrf_token %}
+            {{form.as_p}}
+            <h4>Status : Paid or Un-Paid or Other</h4>
+            <button class="btn btn-bd-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+
+        var element = document.getElementById("id_payment_details");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_activity");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_billing_address_1");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_billing_address_2");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_billing_address_city");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_amount");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_billing_address_state");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_billing_address_pin");
+        element.classList.add("form-control");
+
+        var element = document.getElementById("id_status");
+        element.classList.add("form-control");
+      function jsFunction()
+      {
+        var sel = document.getElementById("inputState").value
+        if(sel==='1')
+        {
+          document.getElementById("adrs").style.display = "none";
+        }
+        if(sel === '2')
+        {
+          document.getElementById("adrs").style.display = "block";
+        }
+
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block dash %}
+    <div class="container d-flex justify-content-center mt-5 pt-5">
+        <div class="py-4 px-5 shadow" style="border-radius: 10px;">
+            <div class="text-center">
+                <img class="img-fluid" src="{% static 'images/tick.gif' %}" style="width:60px;" alt="">
+            </div>
+            <div class="my-3">
+                <h4>Customer Added Successfully</h4>
+                {% for p in h%}
+                <a href="{% url 'billing' p.id%}"><button class="btn btn-primary">Add Bill</button></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
